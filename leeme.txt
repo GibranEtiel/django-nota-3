@@ -1,0 +1,2 @@
+super usuario= i3-gtx1050
+contraseña = 1234
