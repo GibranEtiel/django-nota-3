@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago con Tarjeta</title>
+    <link rel="stylesheet" href="./assent/css/styles-pago.css">
+    <link rel="stylesheet" href="./assent/css/Login.css">
+    <link rel="icon" href="./assent/img/logo pagina.png">
+</head>
+<body>
+    <div class="container fondo formulario ">
+        <h2 class="centrar">Pago con Tarjeta</h2>
+        <form id="payment-form">
+            <label for="nombre">Nombre en la Tarjeta</label>
+            <input type="text" id="nombre" name="nombre" required>
+            
+            <label for="numero">Número de Tarjeta</label>
+            <input type="text" id="numero" name="numero" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
+            
+            <label for="fecha">Fecha de Vencimiento (MM/AA)</label>
+            <input type="text" id="fecha" name="fecha" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
+            
+            <label for="cvv">CVV</label>
+            <input type="text" id="cvv" name="cvv" maxlength="3" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
+            
+            <input type="submit" value="Pagar">
+        </form>
+    </div>
+
+<script src="./assent/js/Pago.js"></script>
+      
+
+</body>
+</html>

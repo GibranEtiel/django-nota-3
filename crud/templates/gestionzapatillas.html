@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <h2>Agregar Nueva Zapatilla</h2>
+    <div class="card">
+        <div class="card-body">
+            <form action="/registrarzapatilla/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" maxlength="100" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="txtDescripcion" name="txtDescripcion" class="form-control" placeholder="Descripción" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="id_tipo">Tipo:</label>
+                    <select id="id_tipo" name="tipo" class="form-control" required>
+                        <option value="niño">Niño</option>
+                        <option value="hombre">Hombre</option>
+                        <option value="mujer">Mujer</option>
+                    </select>
+                    
+                </div>
+                <div class="form-group">
+                    <input type="number" id="numPrecio" name="numPrecio" class="form-control" placeholder="Precio" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="numStock" name="numStock" class="form-control" placeholder="Stock" min="0" required>
+                </div>
+                <div class="form-group">
+                    <input type="file" id="fileImagen" name="fileImagen" class="form-control-file" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtMarca" name="txtMarca" class="form-control" placeholder="Marca" maxlength="50" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Tipo</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Imagen</th>
+                        <th>Marca</th>
+                        <th colspan="2">Opciones</th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in zapatillas %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ c.nombre }}</td>
+                        <td>{{ c.descripcion }}</td>
+                        <td>{{ c.get_tipo_display }}</td>
+                        <td>${{ c.precio }}</td>
+                        <td>{{ c.stock }}</td>
+                        <td><img src="{{ c.imagen.url }}" alt="{{ c.stock}}" class="img-fluid"></td>
+                        <td>{{ c.marca }}</td>
+                        <td><a href="edicionzapatilla/{{c.nombre}}" class="btn btn-info">Editar</a></td>
+                        <td><a href="eliminarzapatilla/{{c.nombre}}" class="btn btn-danger">Eliminar</a></td>
+                       
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

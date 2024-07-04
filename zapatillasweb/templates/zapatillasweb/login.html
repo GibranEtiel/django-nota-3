@@ -1,35 +1,41 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zapatillas san antonio</title>
+    <title>Zapatillas San Antonio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assent/css/Login.css">
-    <link rel="icon" href="./assent/img/logo pagina.png">
-    
+    <link rel="stylesheet" href="{% static 'assent/css/Login.css' %}">   <!-- Cambia la ruta según tu estructura de archivos estáticos -->
+    <link rel="icon" href="{% static 'assent/img/logo_pagina.png' %}">    <!-- Cambia la ruta según tu estructura de archivos estáticos -->
 </head>
 <body>
     <div class="formulario">
         <h1>Iniciar Sesión</h1>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
             <div class="mb-3">
-                <label>Correo Electrónico:</label>
-                <input id="correo" type="email" placeholder="Ingrese su correo" required>
+                <label for="correo">Correo Electrónico:</label>
+                <input id="correo" name="username" type="email" placeholder="Ingrese su correo" required>
             </div>
             <div class="mb-3">
-                <label>Contraseña:</label>
-                <input id="contraseña" type="password" placeholder="Ingrese su contraseña" required>
+                <label for="contraseña">Contraseña:</label>
+                <input id="contraseña" name="password" type="password" placeholder="Ingrese su contraseña" required>
             </div>
-            <a href="./contraseñaolvidada.html" >¿Olvidó su Contraseña?</a>
-            <input id="loginButton" type="button" value="Iniciar Sesión">
-            </a>
-            
-            <div class="registrarse">
-                <p>¿No tienes cuenta? <a href="./registrar.html">Registrate aquí</a></p>
-            </div>
+            <a href="">¿Olvidó su Contraseña?</a>   <!-- Asegúrate de configurar la URL de restablecimiento de contraseña en tus urls.py -->
+            <button type="submit" id="loginButton" class="btn btn-primary">Iniciar Sesión</button>
+        </form>
+        
+        <div class="registrarse">
+            <p>¿No tienes cuenta? <a href="{% url 'registrar' %}">Registrate aquí</a></p>   <!-- Asegúrate de configurar la URL de registro en tus urls.py -->
+        </div>
     </div>
+    
+    <!-- Carga de Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script type="module" src="./assent/js/login.js"></script>
+    <!-- Carga de tu JavaScript personalizado -->
+    <script type="module" src="{% static 'assent/js/login.js' %}"></script>   <!-- Cambia la ruta según tu estructura de archivos estáticos -->
 </body>
 </html>

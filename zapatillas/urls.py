@@ -19,9 +19,14 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('zapatillasweb/', include('zapatillasweb.urls')),
+    path('',include('crud.urls')),
+    path('catalogos',include('catalogos.urls')),
+    
+
     
 ]
 if settings.DEBUG:

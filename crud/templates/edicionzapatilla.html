@@ -1,0 +1,48 @@
+{% extends "./base.html" %}
+
+{% block title %}Gestión de Cursos{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="md-4 offset-md-4">
+        <h2>Edición Zapatilla</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarzapatilla/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtNombre" name="txtNombre" value="{{ zapatilla.nombre }}" class="form-control" placeholder="Nombre" maxlength="100" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="txtDescripcion" name="txtDescripcion" class="form-control" placeholder="Descripción" rows="4" required>{{ zapatilla.descripcion }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_tipo">Tipo:</label>
+                        <select id="id_tipo" name="tipo" class="form-control" required>
+                            <option value="niño" {% if zapatilla.tipo == 'niño' %}selected{% endif %}>Niño</option>
+                            <option value="hombre" {% if zapatilla.tipo == 'hombre' %}selected{% endif %}>Hombre</option>
+                            <option value="mujer" {% if zapatilla.tipo == 'mujer' %}selected{% endif %}>Mujer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="numPrecio" name="numPrecio" value="{{ zapatilla.precio }}" class="form-control" placeholder="Precio" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="numStock" name="numStock" value="{{ zapatilla.stock }}" class="form-control" placeholder="Stock" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" id="fileImagen" name="fileImagen" value="{{ zapatilla.imagen }}" class="form-control-file">
+                        <img src="{{ zapatilla.imagen.url }}" alt="{{ zapatilla.nombre }}" class="img-fluid mt-2">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtMarca" name="txtMarca" value="{{ zapatilla.marca }}" class="form-control" placeholder="Marca" maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

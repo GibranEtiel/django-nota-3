@@ -24,16 +24,16 @@
                         <a class="nav-link active centrar" aria-current="page" href="{% url 'home' %}">INICIO</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link centrar" href="catalogo-hombre.html">HOMBRE</a>
+                        <a class="nav-link centrar" href="{% url 'catalogo-hombre' %}">HOMBRE</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link centrar" href="catalogo-mujer.html">MUJER</a>
+                        <a class="nav-link centrar" href="{%url 'catalogo-mujer' %}">MUJER</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link centrar" href="catalogo-nino.html">NIÑOS</a>
+                        <a class="nav-link centrar" href="{%url 'catalogo-nino' %}">NIÑOS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link centrar" href="Login.html"><i class="fas fa-user"></i> Iniciar Sesión</a>
+                        <a class="nav-link centrar" href="{% url 'login' %}"><i class="fas fa-user"></i> Iniciar Sesión</a>
                     </li>
                 </ul>
             </div>
@@ -103,23 +103,22 @@
             <div class="footer-row">
                 <div class="footer-links">
                     <h4>SERVICIO Y SOPORTE</h4>
-                    <li><a href="./contactos.html">Preguntas frecuentes</a></li>
-                    <li><a href="#">Términos y condiciones</a></li>
-                    <li><a href="#">Políticas de Devolución</a></li>
-                    <li><a href="./calcular-envio.html">Calcular Envíos</a></li>
-                    <li><a href="./contactos.html">Tiendas</a></li>
+                    <li><a href="{% url 'contactos' %}">Preguntas frecuentes</a></li>
+                    <li><a href="{% url 'contactos' %}">Términos y condiciones</a></li>
+                    <li><a href="{% url 'contactos' %}">Políticas de Devolución</a></li>
+                    <li><a href="{% url 'contactos' %}">Tiendas</a></li>
                 </div>
                 <div class="footer-links">
                     <h4>CATEGORIAS</h4>
-                    <li><a href="catalogo-nino.html">Niño</a></li>
-                    <li><a href="./catalogo-hombre.html">Hombre</a></li>
-                    <li><a href="catalogo-mujer.html">Mujer</a></li>
+                    <li><a href="{% url 'catalogo-nino' %}">Niño</a></li>
+                    <li><a href="{% url 'catalogo-hombre' %}">Hombre</a></li>
+                    <li><a href="{%url 'catalogo-mujer' %}">Mujer</a></li>
                 </div>
                 <div class="footer-links">
                     <h4>INFORMACIÓN DE LA EMPRESA</h4>
-                    <li><a href="./contactos.html">Acerca de Zapatillas san Antonio</a></li>
-                    <li><a href="#">Trabaja en Nuestro Equipo</a></li>
-                    <li><a href="#">Prensa</a></li>
+                    <li><a href="{% url 'contactos' %}">Acerca de Zapatillas san Antonio</a></li>
+                    <li><a href="{% url 'contactos' %}">Trabaja en Nuestro Equipo</a></li>
+                    <li><a href="{% url 'contactos' %}">Prensa</a></li>
                 </div>
                 <div class="footer-links">
                     <h4>SIGUENOS</h4>
