@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'zapatillasweb',
     'crud',
     'catalogos',
+    'contacto',
 ]
 
 MIDDLEWARE = [

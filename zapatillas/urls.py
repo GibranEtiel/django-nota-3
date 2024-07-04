@@ -25,8 +25,7 @@ urlpatterns = [
     path('zapatillasweb/', include('zapatillasweb.urls')),
     path('',include('crud.urls')),
     path('catalogos',include('catalogos.urls')),
-    
-
+    path('contacto/', include('contacto.urls')),
     
 ]
 if settings.DEBUG:
