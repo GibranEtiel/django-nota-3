@@ -1,13 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect 
 from .models import Zapatilla
+from .forms import UserRegisterForm
+from django.contrib import messages
 
 def index(request):
     return render(request, 'zapatillasweb/index.html')
-
-def login_view(request):
-    return render(request, 'zapatillasweb/login.html')
-def registrar_view(request):
-    return render(request, 'zapatillasweb/registrar.html')
 
 def home(request):
     
@@ -27,6 +24,23 @@ def catalogo_nino_view(request):
 
 def contacto_view(request):
     return render(request, 'zapatillasweb/contactos.html')
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if  form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            messages.success(request, f'Usuario {username} creado')
+            return redirect('home')
+    else:
+        form = UserRegisterForm()
+    context = {'form' : form }
+            
+    return render(request, 'zapatillasweb/register.html', context )
+
+
+
 
 
 

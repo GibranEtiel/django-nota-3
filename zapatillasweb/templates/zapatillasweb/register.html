@@ -5,19 +5,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Registro</title>
     <link rel="stylesheet" href="{% static 'assent/css/Login.css' %}">
 </head>
 <body>
     <div class="formulario">
-        <h1>Login</h1>
+        <h1>Registro</h1>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Login">
+            <input type="submit" value="Registrarse">
         </form>
         <div class="iniciarSesion">
-            <a href="{% url 'register' %}">¿No tienes una cuenta? Regístrate</a>
+            <a href="{% url 'login' %}">¿Ya tienes una cuenta? Inicia sesión</a>
         </div>
     </div>
 </body>

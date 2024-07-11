@@ -33,7 +33,21 @@
                         <a class="nav-link centrar" href="{%url 'catalogo-nino' %}">NIÑOS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link centrar" href="{% url 'login' %}"><i class="fas fa-user"></i> Iniciar Sesión</a>
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <form method="POST" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="nav-link btn btn-link" style="padding: 0;">Logout</button>
+                                </form>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            </li>
+                        {% endif %}
                     </li>
                 </ul>
             </div>
