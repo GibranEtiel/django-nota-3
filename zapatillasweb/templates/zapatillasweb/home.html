@@ -37,15 +37,15 @@
                             <li class="nav-item">
                                 <form method="POST" action="{% url 'logout' %}">
                                     {% csrf_token %}
-                                    <button type="submit" class="nav-link btn btn-link" style="padding: 0;">Logout</button>
+                                    <button type="submit" class="nav-link btn btn-link centrar" >Cerrar sesión</button>
                                 </form>
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                                <a class="nav-link centrar" href="{% url 'register' %}">Registrarse</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                                <a class="nav-link centrar" href="{% url 'login' %}">Iniciar sesión</a>
                             </li>
                         {% endif %}
                     </li>
