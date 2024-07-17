@@ -9,9 +9,9 @@ urlpatterns = [
     #base de la pagina
     path('', views.home, name='home'),
     path('base/', views.base, name='base'),
-    path('catalogo-hombre/', views.catalogo_hombre_view, name='catalogo-hombre'),
-    path('catalogo-mujer/', views.catalogo_mujer_view, name='catalogo-mujer'),
-    path('catalogo-nino/', views.catalogo_nino_view, name='catalogo-nino'),
+    path('catalogo-hombre/', views.catalogo_hombre, name='catalogo-hombre'),
+    path('catalogo-mujer/', views.catalogo_mujer, name='catalogo-mujer'),
+    path('catalogo-nino/', views.catalogo_nino, name='catalogo-nino'),
     path('contacto/', views.contacto_view, name='contacto/contactos'),
     #login
     path('register/', views.register, name='register'),
@@ -22,6 +22,7 @@ urlpatterns = [
     path('listar-producto/', views.listar_productos, name='listar_producto'),
     path('modificar-producto/<id>/', views.modificar_producto, name='modificar_producto'),
     path('eliminar-producto/<id>/', views.eliminar_producto, name='eliminar_producto'),
+    
     
     
 ]

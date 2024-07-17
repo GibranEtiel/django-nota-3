@@ -14,20 +14,10 @@ def base(request):
     
     return render(request, 'zapatillasweb/base.html')
 
-def catalogo_hombre_view(request):
-   
-    return render(request, 'zapatillasweb/catalogo-hombre.html')
-
-def catalogo_mujer_view(request):
-    
-    return render(request, 'zapatillasweb/catalogo-mujer.html')
-
-def catalogo_nino_view(request):
-  
-    return render(request, 'zapatillasweb/catalogo-nino.html')
-
 def contacto_view(request):
     return render(request, 'zapatillasweb/contactos.html')
+def cartasp(request):
+    return render(request, 'zapatillasweb/cartasp.html')
 
 #registro
 def register(request):
@@ -47,18 +37,19 @@ def register(request):
 #Agregar productos
 @permission_required('zapatillasweb.add_producto')
 def agregar_producto(request):
-    data ={
+    data = {
         'form': ZapatillaForm()
     }
     if request.method == 'POST':
         formulario = ZapatillaForm(data=request.POST, files=request.FILES)
         if formulario.is_valid():
-            formulario.save()
-            messages.success(request,"Zapatilla agregada correctamente")
-            
+            zapatilla = formulario.save()
+            messages.success(request, "Zapatilla agregada correctamente")
+
+            # Redirigir según el tipo de zapatilla
         else:
             data["form"] = formulario
-    
+
     return render(request, 'zapatillasweb/producto/agregar.html', data)
 
 #listar productos
@@ -69,7 +60,7 @@ def listar_productos(request):
     page = request.GET.get('page', 1)
     
     try: 
-        paginator = Paginator(productos, 2)
+        paginator = Paginator(productos, 5)
         productos = paginator.page(page)
     except:
         raise Http404
@@ -110,4 +101,27 @@ def eliminar_producto(request,id):
 
 
 
+
+
+#catalogos
+def catalogo_hombre(request):
+    productos = Zapatilla.objects.filter(tipo='hombre')
+    data = {
+        'entity': productos
+    }
+    return render(request, 'zapatillasweb/catalogo-hombre.html', data)
+
+def catalogo_mujer(request):
+    productos = Zapatilla.objects.filter(tipo='mujer')
+    data = {
+        'entity': productos
+    }
+    return render(request, 'zapatillasweb/catalogo-mujer.html', data)
+
+def catalogo_nino(request):
+    productos = Zapatilla.objects.filter(tipo='niño')
+    data = {
+        'entity': productos
+    }
+    return render(request, 'zapatillasweb/catalogo-nino.html', data)
 
