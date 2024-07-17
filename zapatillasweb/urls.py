@@ -22,6 +22,8 @@ urlpatterns = [
     path('listar-producto/', views.listar_productos, name='listar_producto'),
     path('modificar-producto/<id>/', views.modificar_producto, name='modificar_producto'),
     path('eliminar-producto/<id>/', views.eliminar_producto, name='eliminar_producto'),
+    #carrito
+    path('compra-producto/<id>/', views.compra_producto, name='compra_producto'),
     
     
     

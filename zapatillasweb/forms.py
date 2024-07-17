@@ -17,3 +17,10 @@ class ZapatillaForm(forms.ModelForm):
     class Meta:
         model = Zapatilla
         fields = '__all__'
+        
+class CompraForm(forms.Form):
+    nombre = forms.CharField(max_length=100, label='Nombre Completo')
+    direccion = forms.CharField(widget=forms.Textarea, label='Dirección')
+    email = forms.EmailField(label='Correo Electrónico')
+    telefono = forms.CharField(max_length=15, label='Teléfono')
+    cantidad = forms.IntegerField(min_value=1, label='Cantidad')

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Zapatilla
-from .forms import UserRegisterForm, ZapatillaForm
+from .forms import UserRegisterForm, ZapatillaForm, CompraForm
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
@@ -124,4 +124,19 @@ def catalogo_nino(request):
         'entity': productos
     }
     return render(request, 'zapatillasweb/catalogo-nino.html', data)
+
+#carrito
+
+
+def compra_producto(request, id):
+    producto = get_object_or_404(Zapatilla, id=id)
+    form = CompraForm()
+
+    if request.method == 'POST':
+        form = CompraForm(request.POST)
+        if form.is_valid():
+            messages.success(request, f'¡Compra realizada con éxito!')
+            return redirect('home')  # Redirige a la página principal o a donde desees
+            
+    return render(request, 'zapatillasweb/compra-producto.html', {'form': form, 'producto': producto})
 
