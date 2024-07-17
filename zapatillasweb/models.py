@@ -7,7 +7,6 @@ class Zapatilla(models.Model):
         ('hombre', 'Hombre'),
         ('mujer', 'Mujer'),
     ]
-    id_zapatilla = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
     tipo = models.CharField(max_length=10, choices=TIPO_CHOICES)

@@ -1,0 +1,82 @@
+{% extends 'zapatillasweb/base.html' %}
+
+
+{% block js %}
+<script>
+    function eliminarProducto(id) {
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "Esta acción no se puede deshacer",
+            icon: "question",
+            showCancelButton: true,
+            cancelButtonText: "No, Cancelar",
+            confirmButtonText:"Si, Eliminar",
+            reverseButtons: true,
+            confirmButtonColor: "red"
+        })
+        .then(function(result){
+            if(result.isConfirmed){
+                window.location.href = "/eliminar-producto/"+id+"/"
+            }
+        })
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">Listado de Zapatillas</h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in entity %}
+                        <tr>
+                            <td>{{ p.nombre|title }}</td>
+                            <td>{{ p.descripcion|linebreaks }}</td>
+                            <td>{{ p.get_tipo_display }}</td>
+                            <td>${{ p.precio|floatformat:2 }}</td>
+                            <td>{{ p.stock }}</td>
+                            <td><img src="{{ p.imagen.url }}" alt="{{ p.nombre }}" style="max-height: 50px;"></td>
+                            <td>{{ p.marca|title }}</td>
+                            <td>
+                                {%if perms.zapatillasweb.change_producto %}
+                                <a href="{% url 'modificar_producto' p.id %}" class="btn btn-info btn-sm"> Modificar </a>
+                                {% endif %}
+
+                                {%if perms.zapatillasweb.delete_producto %}
+                                <a href="#" onclick="eliminarProducto({{p.id}})" class="btn btn-danger btn-sm"> Eliminar </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="7" class="text-center">No hay productos disponibles.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div>
+                    {% include 'zapatillasweb/paginator.html' %}
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -21,6 +21,21 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    {% if perms.zapatillasweb.add_producto %}
+                    <li class="nav-item">
+                        <a class="nav-link centrar" href="{% url 'agregar_producto' %}">AGREGAR PRODUCTO</a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                <ul class="navbar-nav">
+                    {% if perms.zapatillasweb.view_producto %}
+                    <li class="nav-item">
+                        <a class="nav-link centrar" href="{% url 'listar_producto' %}">LISTAR PRODUCTO</a>
+                    </li>
+                    {% endif %}
+                </ul>
                 <ul class="navbar-nav ms-auto"> <!-- Alineación al máximo a la derecha -->
                     <li class="nav-item">
                         <a class="nav-link centrar" href="{% url 'home' %}">INICIO</a>
@@ -33,6 +48,23 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link centrar" href="{% url 'catalogo-nino' %}">NIÑOS</a>
+                    </li>
+                    <li class="nav-item">
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <form method="POST" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="nav-link btn btn-link centrar" >CERRAR SESIÓN</button>
+                                </form>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link centrar" href="{% url 'register' %}">REGISTRARSE</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link centrar" href="{% url 'login' %}">INICIAR SESIÓN</a>
+                            </li>
+                        {% endif %}
                     </li>
                 </ul>
             </div>
