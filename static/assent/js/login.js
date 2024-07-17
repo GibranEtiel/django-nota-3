@@ -13,7 +13,7 @@ document.getElementById('loginButton').addEventListener('click', () => {
         window.location.href = './Registradoindex.html';
     } else {
         // Si no se encuentra en el almacenamiento local, realiza la solicitud a la API
-        const url = `https://my.api.mockaroo.com/users.json?key=1ad56380`;
+        const url = `https://my.api.mockaroo.com/users.json?key=e4883c10`;
 
         fetch(url)
             .then(response => response.json())

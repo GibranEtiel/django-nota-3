@@ -3,32 +3,27 @@
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="card shadow-sm">
                 <div class="card-body">
-
-
+                    <h2 class="card-title text-center mb-4">Formulario de Compra</h2>
                     <form method="post">
                         {% csrf_token %}
-                        <div class="form-group">
-                            <label for="id_nombre">Nombre Completo</label>
-                            {{ form.nombre }}
+                        <div class="mb-3">
+                            <label for="id_nombreTarjeta">Nombre Completo</label>
+                            {{ form.nombreTarjeta }}
                         </div>
-                        <div class="form-group">
-                            <label for="id_direccion">Dirección</label>
-                            {{ form.direccion }}
+                        <div class="mb-3">
+                            <label for="id_numeroTarjeta">Número de Tarjeta</label>
+                            {{ form.numeroTarjeta }}
                         </div>
-                        <div class="form-group">
-                            <label for="id_email">Correo Electrónico</label>
-                            {{ form.email }}
+                        <div class="mb-3">
+                            <label for="id_FechaVencimiento">Fecha de Vencimiento</label>
+                            {{ form.FechaVencimiento }}
                         </div>
-                        <div class="form-group">
-                            <label for="id_telefono">Teléfono</label>
-                            {{ form.telefono }}
-                        </div>
-                        <div class="form-group">
-                            <label for="id_cantidad">Cantidad</label>
-                            {{ form.cantidad }}
+                        <div class="mb-3 ">
+                            <label for="id_Cvv">CVV</label>
+                            {{ form.Cvv }}
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Comprar</button>
                     </form>

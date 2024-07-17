@@ -1,6 +1,8 @@
 {% extends 'zapatillasweb/base.html' %}
 
 {% block content %}
+
+
 <div class="container mt-5">
 
     <div class="row">
@@ -12,6 +14,7 @@
                     <h5 class="card-title">{{ p.nombre|title }}</h5>
                     <p class="card-text">{{ p.descripcion|linebreaks }}</p>
                     <p class="card-text"><strong>Precio: </strong>${{ p.precio|floatformat:2 }}</p>
+                    <p class="card-text"><strong>Stock disponible: </strong>{{ p.stock }}</p>  <!-- Mostrar stock -->
                     <a href="{% url 'comprar-producto' p.id %}" class="btn btn-primary btn-block">Comprar</a>
                 </div>
             </div>

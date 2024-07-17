@@ -103,6 +103,8 @@ def eliminar_producto(request,id):
 
 
 
+
+
 #catalogos
 def catalogo_hombre(request):
     productos = Zapatilla.objects.filter(tipo='hombre')
@@ -126,6 +128,8 @@ def catalogo_nino(request):
     return render(request, 'zapatillasweb/catalogo-nino.html', data)
 
 #carrito
+
+
 
 
 def compra_producto(request, id):

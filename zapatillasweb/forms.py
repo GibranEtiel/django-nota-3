@@ -19,8 +19,14 @@ class ZapatillaForm(forms.ModelForm):
         fields = '__all__'
         
 class CompraForm(forms.Form):
-    nombre = forms.CharField(max_length=100, label='Nombre Completo')
-    direccion = forms.CharField(widget=forms.Textarea, label='Dirección')
-    email = forms.EmailField(label='Correo Electrónico')
-    telefono = forms.CharField(max_length=15, label='Teléfono')
-    cantidad = forms.IntegerField(min_value=1, label='Cantidad')
+    nombreTarjeta = forms.CharField(max_length=100, label='Nombre Completo')
+    numeroTarjeta = forms.CharField(label='Número de Tarjeta', widget=forms.TextInput(attrs={'maxlength': '16'}))
+    FechaVencimiento = forms.CharField(label='Fecha de Vencimiento (MM/YY)', widget=forms.TextInput(attrs={'maxlength': '5'}))
+    Cvv = forms.CharField(max_length=3, label='CVV', widget=forms.TextInput(attrs={'maxlength': '3'}))
+    
+    def clean_Cvv(self):
+        cvv = self.cleaned_data['Cvv']
+        if not cvv.isdigit():
+            raise forms.ValidationError("El CVV debe contener solo números.")
+        return cvv
+    

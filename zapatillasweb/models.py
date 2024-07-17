@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Zapatilla(models.Model):
     TIPO_CHOICES = [
         ('niño', 'Niño'),
@@ -17,4 +16,9 @@ class Zapatilla(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+    
+
+
+
 
