@@ -12,7 +12,7 @@
                     <p class="card-text">{{ p.descripcion|linebreaks }}</p>
                     <p class="card-text"><strong>Precio: </strong>${{ p.precio|floatformat:2 }}</p>
                     <p class="card-text"><strong>Stock disponible: </strong>{{ p.stock }}</p>  <!-- Mostrar stock -->
-
+                    <a href="{% url 'compra_producto' p.id %}" class="btn btn-primary btn-block">Comprar</a>
                     <a href="#" class="btn btn-primary btn-block">Comprar</a>
                 </div>
             </div>

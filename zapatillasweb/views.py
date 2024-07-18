@@ -104,7 +104,6 @@ def eliminar_producto(request,id):
 
 
 
-
 #catalogos
 def catalogo_hombre(request):
     productos = Zapatilla.objects.filter(tipo='hombre')
